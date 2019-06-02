@@ -1,0 +1,15 @@
+C:\Tho\Quan_Ly_Xuat_Nhap_Kho\QuanLyXuatNhapKho\QuanLyXuatNhapKho\bin\Debug\WindowsFormsApplication1.exe.config
+C:\Tho\Quan_Ly_Xuat_Nhap_Kho\QuanLyXuatNhapKho\QuanLyXuatNhapKho\obj\Debug\QuanLyXuatNhapKho.frmDangNhap.resources
+C:\Tho\Quan_Ly_Xuat_Nhap_Kho\QuanLyXuatNhapKho\QuanLyXuatNhapKho\obj\Debug\QuanLyXuatNhapKho.frmException.resources
+C:\Tho\Quan_Ly_Xuat_Nhap_Kho\QuanLyXuatNhapKho\QuanLyXuatNhapKho\obj\Debug\QuanLyXuatNhapKho.frmMain.resources
+C:\Tho\Quan_Ly_Xuat_Nhap_Kho\QuanLyXuatNhapKho\QuanLyXuatNhapKho\obj\Debug\QuanLyXuatNhapKho.frmMDIChild.resources
+C:\Tho\Quan_Ly_Xuat_Nhap_Kho\QuanLyXuatNhapKho\QuanLyXuatNhapKho\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Tho\Quan_Ly_Xuat_Nhap_Kho\QuanLyXuatNhapKho\QuanLyXuatNhapKho\obj\Debug\QuanLyXuatNhapKho.csproj.GenerateResource.Cache
+C:\Tho\Quan_Ly_Xuat_Nhap_Kho\QuanLyXuatNhapKho\QuanLyXuatNhapKho\obj\Debug\WindowsFormsApplication1.exe.licenses
+C:\Tho\Quan_Ly_Xuat_Nhap_Kho\QuanLyXuatNhapKho\QuanLyXuatNhapKho\bin\Debug\WindowsFormsApplication1.exe
+C:\Tho\Quan_Ly_Xuat_Nhap_Kho\QuanLyXuatNhapKho\QuanLyXuatNhapKho\bin\Debug\WindowsFormsApplication1.pdb
+C:\Tho\Quan_Ly_Xuat_Nhap_Kho\QuanLyXuatNhapKho\QuanLyXuatNhapKho\obj\Debug\QuanLyXuatNhapKho.frmMain1.resources
+C:\Tho\Quan_Ly_Xuat_Nhap_Kho\QuanLyXuatNhapKho\QuanLyXuatNhapKho\obj\Debug\WindowsFormsApplication1.exe
+C:\Tho\Quan_Ly_Xuat_Nhap_Kho\QuanLyXuatNhapKho\QuanLyXuatNhapKho\obj\Debug\WindowsFormsApplication1.pdb
+C:\Tho\Quan_Ly_Xuat_Nhap_Kho\QuanLyXuatNhapKho\QuanLyXuatNhapKho\obj\Debug\QuanLyXuatNhapKho.ucQuanLyNhanVien.resources
+C:\Tho\Quan_Ly_Xuat_Nhap_Kho\QuanLyXuatNhapKho\QuanLyXuatNhapKho\obj\Debug\QuanLyXuatNhapKho.csprojResolveAssemblyReference.cache
