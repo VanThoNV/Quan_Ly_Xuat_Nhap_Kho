@@ -11,8 +11,7 @@ namespace QuanLyXuatNhapKho
     static class Program
     {
 
-        //public static NguoiDung CurrentUser { get; set; }
-
+        public static Users CurrentUser { get; set; }        
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -31,7 +30,7 @@ namespace QuanLyXuatNhapKho
             frmDangNhap fLogin = new frmDangNhap();
             if (fLogin.ShowDialog() == DialogResult.OK)
             {
-                //CurrentUser = fLogin.CurrentUser;
+                CurrentUser = fLogin.CurrentUser;
                 Application.Run(new frmMain1());
             }
             //else

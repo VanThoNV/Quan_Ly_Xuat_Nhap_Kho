@@ -7,11 +7,12 @@ namespace QuanLyXuatNhapKho
 {
     public partial class frmDangNhap : XtraForm
     {
-        //NguoiDungDAL _nguoiDungDAL = new NguoiDungDAL();
-        //public NguoiDung CurrentUser { get; set; }
+        UsersDAL _userDAL = new UsersDAL();       
+        public Users CurrentUser { get; set; }
         public frmDangNhap()
-        {            
+        {
             InitializeComponent();
+            
         }
 
         private void btnDangNhap_Click(object sender, EventArgs e)
@@ -34,19 +35,19 @@ namespace QuanLyXuatNhapKho
 
         private void DangNhap()
         {
-            //lblError.Visible = false;
-            //string userName = txtUserName.Text.Trim();
-            //string password = txtPassword.Text;
-            //NguoiDung nguoiDung = _nguoiDungDAL.DangNhap(userName, password);
-            //if (nguoiDung != null)
-            //{
-            //    CurrentUser = nguoiDung;
+            lblError.Visible = false;
+            string userName = txtUserName.Text.Trim();
+            string password = txtPassword.Text;
+            Users nguoiDung = _userDAL.DangNhap(userName, password);
+            if (nguoiDung != null)
+            {
+                CurrentUser = nguoiDung;
                 this.DialogResult = DialogResult.OK;
-            //}
-            //else
-            //{
-            //    lblError.Visible = true;
-            //}
+            }
+            else
+            {
+                lblError.Visible = true;
+            }
         }
 
 

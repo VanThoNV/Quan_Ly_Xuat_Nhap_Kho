@@ -7,8 +7,8 @@
     <ProjectGuid>{984FF64D-8131-492A-B46C-44334BEEB2CA}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WindowsFormsApplication1</RootNamespace>
-    <AssemblyName>WindowsFormsApplication1</AssemblyName>
+    <RootNamespace>QuanLyXuatNhapKho</RootNamespace>
+    <AssemblyName>QuanLyXuatNhapKho</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

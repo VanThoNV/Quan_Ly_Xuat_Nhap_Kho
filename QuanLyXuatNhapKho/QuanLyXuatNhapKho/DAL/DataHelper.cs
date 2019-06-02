@@ -24,10 +24,10 @@ namespace QuanLyXuatNhapKho.DAL
         //===============================Funtion Basic===========================================
         public DataHelper()
         {
-            string strCn = @"Data Source=.;Initial Catalog=QuanLyXuatNhapKho;Integrated Security=True";//ConfigurationManager.ConnectionStrings["QLKSConnectionString"].ConnectionString;
+            //string strCn = @"Data Source=.;Initial Catalog=QuanLyXuatNhapKho;Integrated Security=True";
+            string strCn = ConfigurationManager.ConnectionStrings["QLSNKConnectionString"].ConnectionString;
             cn = new SqlConnection(strCn);
         }
-
         public void Connect()
         {
             if (cn.State == ConnectionState.Closed)
@@ -57,7 +57,7 @@ namespace QuanLyXuatNhapKho.DAL
                 if (prs != null)
                     cm.Parameters.AddRange(prs);
                 cm.ExecuteNonQuery();
-                DisConnect();
+               // DisConnect();
 
                 return true;
             }
@@ -77,7 +77,7 @@ namespace QuanLyXuatNhapKho.DAL
                 if (prs != null)
                     cm.Parameters.AddRange(prs);
                 object result = cm.ExecuteScalar();
-                DisConnect();
+                //DisConnect();
 
                 return result;
             }
@@ -97,8 +97,6 @@ namespace QuanLyXuatNhapKho.DAL
                 if (prs != null)
                     cm.Parameters.AddRange(prs);
                 SqlDataReader dr = cm.ExecuteReader();
-                dr.Close();
-                DisConnect();
                 return dr;
             }
             catch (Exception ex)
@@ -118,7 +116,7 @@ namespace QuanLyXuatNhapKho.DAL
                 DataTable dt = new DataTable();
                 SqlDataAdapter da = new SqlDataAdapter(cm);
                 da.Fill(dt);
-                DisConnect();
+                //DisConnect();
                 return dt;
             }
             catch (Exception ex)
@@ -155,26 +153,34 @@ namespace QuanLyXuatNhapKho.DAL
             return res;
 
         }
-        public void ExecuteStoredProcedure(string procedureName, object model)
+        public DataSet ExecuteStoredProcedure(string procedureName, object model)
         {
+            DataSet data = new DataSet();
             try
             {
                 Connect();
-                var parameters = GenerateSQLParameters(model);
                 cm = new SqlCommand(procedureName, cn);
                 cm.CommandType = CommandType.StoredProcedure;
-                foreach (var param in parameters)
+                if (model != null)
                 {
-                    cm.Parameters.Add(param);
-                }
-                cm.ExecuteNonQuery();
-                DisConnect();
+                    var parameters = GenerateSQLParameters(model);
+
+                    foreach (var param in parameters)
+                    {
+                        cm.Parameters.Add(param);
+                    }
+                }               
+                SqlDataAdapter da = new SqlDataAdapter(cm);         
+                da.Fill(data);
+                //cm.ExecuteNonQuery();
+                DisConnect();               
             }
             catch (Exception ex)
             {
                 error = ex.Message;
                 throw ex;
             }
+            return data;
         }
         private List<SqlParameter> GenerateSQLParameters(object model)
         {
@@ -196,6 +202,9 @@ namespace QuanLyXuatNhapKho.DAL
 
         }
 
-
+        public string GetUserID()
+        {
+            return Program.CurrentUser.ID;
+        }       
     }
 }

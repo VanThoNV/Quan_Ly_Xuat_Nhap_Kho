@@ -53,7 +53,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(34, 84);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 13);
+            this.label2.Size = new System.Drawing.Size(83, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Tên đăng nhập:";
             // 
@@ -70,17 +70,17 @@
             // 
             this.txtUserName.Location = new System.Drawing.Point(124, 81);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(175, 20);
+            this.txtUserName.Size = new System.Drawing.Size(175, 21);
             this.txtUserName.TabIndex = 3;
-            this.txtUserName.Text = "thonguyen";
+            this.txtUserName.Text = "Thonv";
             // 
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(124, 110);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(175, 20);
+            this.txtPassword.Size = new System.Drawing.Size(175, 21);
             this.txtPassword.TabIndex = 4;
-            this.txtPassword.Text = "123";
+            this.txtPassword.Text = "1";
             this.txtPassword.UseSystemPasswordChar = true;
             this.txtPassword.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyUp);
             // 
@@ -110,7 +110,7 @@
             this.lblError.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblError.Location = new System.Drawing.Point(121, 133);
             this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(174, 13);
+            this.lblError.Size = new System.Drawing.Size(172, 13);
             this.lblError.TabIndex = 7;
             this.lblError.Text = "Tên đăng nhập hoặc mật khẩu sai.";
             this.lblError.Visible = false;

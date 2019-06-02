@@ -21,25 +21,28 @@ namespace QuanLyXuatNhapKho
         {
             InitializeComponent();
         }
-        public void LoadData()
+        public void Process()
         {
-            _emps = _empDAL.GetAllExisting();
-            gDSNV.DataSource = _emps;
-
+            var ds = _empDAL.CreateStore("sp_Employees_GetAll", null);
+            gDSNV.DataSource = ds.Tables[0];
+            gvDSNV_Click(null, null);
         }
 
         private void gvDSNV_Click(object sender, EventArgs e)
         {
-            DataRow row = gvDSNV.GetFocusedDataRow();
+            var row = gvDSNV.GetDataRow(gvDSNV.FocusedRowHandle);
+            if (row == null) return;
             txtMaNV.Text = row["EmpID"].ToString();
             txtHoTen.Text = row["FullName"].ToString();
             txtCMND.Text = row["IdentityCard"].ToString();
-            dateNgaySinh.DateTime =Convert.ToDateTime(row["WorkDay"]);
-            dateNgayLamViec.DateTime = Convert.ToDateTime(row["BirthDay"]);
+            dateNgaySinh.DateTime = Convert.ToDateTime(row["BirthDay"]);
+            dateNgayLamViec.DateTime = Convert.ToDateTime(row["WorkDay"]);
             txtDiaChi.Text = row["Address"].ToString();
             txtGhiChu.Text = row["Note"].ToString();
-            rdbNam.Checked = Convert.ToBoolean(row["Sex"]) == true ? true : false;
-            rdbNu.Checked = Convert.ToBoolean(row["Sex"]) == true ? false : true;
+            txtEmail.Text = row["Email"].ToString();
+            txtSDT.Text = row["Phone"].ToString();
+            rdbNam.Checked = row["Sex"].ToString() == "Nam" ? true : false;
+            rdbNu.Checked = row["Sex"].ToString() == "Nam" ? false : true;
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
@@ -63,7 +66,7 @@ namespace QuanLyXuatNhapKho
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            Employees emps = new Employees()
+            var isSuccess = _empDAL.CreateStore("sp_Employees_Save", new
             {
                 EmpID = txtMaNV.Text,
                 IdentityCard = txtCMND.Text,
@@ -74,18 +77,59 @@ namespace QuanLyXuatNhapKho
                 Phone = txtSDT.Text,
                 Address = txtDiaChi.Text,
                 Note = txtGhiChu.Text,
-                Sex = rdbNam.Checked
-            };
-            bool isSuccess = _empDAL.Save(" ", emps);
-            if(isSuccess == true)
+                Sex = rdbNam.Checked,
+                UserID = Program.CurrentUser.ID
+            });
+            if (isSuccess == null)
             {
-                MessageBox.Show("Lưu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Có lỗi hệ thống, không lưu được.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             else
             {
-                MessageBox.Show("Có lỗi hệ thống, không lưu được.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lưu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Process();
             }
 
+        }
+
+        private void ucQuanLyNhanVien_Load(object sender, EventArgs e)
+        {
+            //LoadData();
+        }
+
+        private void repositoryItemButtonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có muốn xóa nhân viên này không?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                var row = gvDSNV.GetDataRow(gvDSNV.FocusedRowHandle);
+                if (row == null) return;
+                var isSuccess = _empDAL.CreateStore("sp_Employees_Delete", new
+                {
+                    EmpID =  row["EmpID"].ToString()
+                });
+                if (isSuccess == null)
+                {
+                    MessageBox.Show("Có lỗi hệ thống, không xóa được.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("Xóa thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Process();
+                }
+            }
+        }
+
+        private void gvDSNV_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            gvDSNV_Click(null, null);
+        }
+
+        private void textEdit7_TextChanged(object sender, EventArgs e)
+        {
+            gvDSNV.ActiveFilterString = "[EmpID] like '%" + txtSearch.Text.Trim() + "%' OR [FullName] like '%" + txtSearch.Text.Trim() + "%' OR [Phone] like '%" + txtSearch.Text.Trim() + "%'";
         }
     }
 }

@@ -61,6 +61,7 @@
             this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
             this.pnMain = new DevExpress.XtraEditors.PanelControl();
+            this.ucQuanLyNhanVien1 = new QuanLyXuatNhapKho.ucQuanLyNhanVien();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgCLT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
@@ -68,6 +69,7 @@
             this.dockPanel1_Container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnMain)).BeginInit();
+            this.pnMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // ribbon
@@ -96,6 +98,8 @@
             this.ribbonPage1});
             this.ribbon.Size = new System.Drawing.Size(1167, 146);
             this.ribbon.StatusBar = this.ribbonStatusBar;
+            this.ribbon.SelectedPageChanged += new System.EventHandler(this.ribbon_SelectedPageChanged);
+            this.ribbon.TabIndexChanged += new System.EventHandler(this.ribbon_TabIndexChanged);
             // 
             // imgCLT
             // 
@@ -331,11 +335,20 @@
             // 
             // pnMain
             // 
+            this.pnMain.Controls.Add(this.ucQuanLyNhanVien1);
             this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnMain.Location = new System.Drawing.Point(200, 146);
             this.pnMain.Name = "pnMain";
             this.pnMain.Size = new System.Drawing.Size(967, 521);
             this.pnMain.TabIndex = 3;
+            // 
+            // ucQuanLyNhanVien1
+            // 
+            this.ucQuanLyNhanVien1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucQuanLyNhanVien1.Location = new System.Drawing.Point(2, 2);
+            this.ucQuanLyNhanVien1.Name = "ucQuanLyNhanVien1";
+            this.ucQuanLyNhanVien1.Size = new System.Drawing.Size(963, 517);
+            this.ucQuanLyNhanVien1.TabIndex = 0;
             // 
             // frmMain1
             // 
@@ -354,6 +367,7 @@
             this.StatusBar = this.ribbonStatusBar;
             this.Text = "Phần mềm quản lý xuất nhập kho";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmMain1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgCLT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
@@ -361,6 +375,7 @@
             this.dockPanel1_Container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnMain)).EndInit();
+            this.pnMain.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -399,5 +414,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
         private DevExpress.XtraNavBar.NavBarItem navBarItem3;
         private DevExpress.XtraEditors.PanelControl pnMain;
+        private ucQuanLyNhanVien ucQuanLyNhanVien1;
+        //private ucQuanLyNhanVien ucQuanLyNhanVien1;
     }
 }

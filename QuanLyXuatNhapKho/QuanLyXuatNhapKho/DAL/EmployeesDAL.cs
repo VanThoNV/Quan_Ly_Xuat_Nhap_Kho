@@ -147,18 +147,9 @@ namespace QuanLyXuatNhapKho.DAL
             return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
         }
 
-        public bool Save(string procedureName,Employees nv)
+        public DataSet CreateStore(string procedureName, object model)
         {
-            try
-            {
-                _helper.ExecuteStoredProcedure(procedureName, nv);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-            
+                return _helper.ExecuteStoredProcedure(procedureName, model);
         }
     }
 }
