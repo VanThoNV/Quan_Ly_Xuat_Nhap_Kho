@@ -23,9 +23,9 @@ namespace QuanLyXuatNhapKho
         }
         public void Process()
         {
-            var ds = _empDAL.CreateStore("sp_Employees_GetAll", null);
-            gDSNV.DataSource = ds.Tables[0];
-            gvDSNV_Click(null, null);
+            //var ds = _empDAL.CreateStore("sp_Employees_GetAll", null);
+            //gDSNV.DataSource = ds.Tables[0];
+            //gvDSNV_Click(null, null);
         }
 
         private void gvDSNV_Click(object sender, EventArgs e)
@@ -66,30 +66,30 @@ namespace QuanLyXuatNhapKho
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            var isSuccess = _empDAL.CreateStore("sp_Employees_Save", new
-            {
-                EmpID = txtMaNV.Text,
-                IdentityCard = txtCMND.Text,
-                FullName = txtHoTen.Text,
-                BirthDay = dateNgaySinh.DateTime,
-                WorkDay = dateNgayLamViec.DateTime,
-                Email = txtEmail.Text,
-                Phone = txtSDT.Text,
-                Address = txtDiaChi.Text,
-                Note = txtGhiChu.Text,
-                Sex = rdbNam.Checked,
-                UserID = Program.CurrentUser.ID
-            });
-            if (isSuccess == null)
-            {
-                MessageBox.Show("Có lỗi hệ thống, không lưu được.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            else
-            {
-                MessageBox.Show("Lưu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Process();
-            }
+            //var isSuccess = _empDAL.CreateStore("sp_Employees_Save", new
+            //{
+            //    EmpID = txtMaNV.Text,
+            //    IdentityCard = txtCMND.Text,
+            //    FullName = txtHoTen.Text,
+            //    BirthDay = dateNgaySinh.DateTime,
+            //    WorkDay = dateNgayLamViec.DateTime,
+            //    Email = txtEmail.Text,
+            //    Phone = txtSDT.Text,
+            //    Address = txtDiaChi.Text,
+            //    Note = txtGhiChu.Text,
+            //    Sex = rdbNam.Checked,
+            //    UserID = Program.CurrentUser.ID
+            //});
+            //if (isSuccess == null)
+            //{
+            //    MessageBox.Show("Có lỗi hệ thống, không lưu được.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Lưu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    Process();
+            //}
 
         }
 
@@ -100,26 +100,26 @@ namespace QuanLyXuatNhapKho
 
         private void repositoryItemButtonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            DialogResult result = MessageBox.Show("Bạn có muốn xóa nhân viên này không?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (result == DialogResult.Yes)
-            {
-                var row = gvDSNV.GetDataRow(gvDSNV.FocusedRowHandle);
-                if (row == null) return;
-                var isSuccess = _empDAL.CreateStore("sp_Employees_Delete", new
-                {
-                    EmpID =  row["EmpID"].ToString()
-                });
-                if (isSuccess == null)
-                {
-                    MessageBox.Show("Có lỗi hệ thống, không xóa được.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                else
-                {
-                    MessageBox.Show("Xóa thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Process();
-                }
-            }
+            //DialogResult result = MessageBox.Show("Bạn có muốn xóa nhân viên này không?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            //if (result == DialogResult.Yes)
+            //{
+            //    var row = gvDSNV.GetDataRow(gvDSNV.FocusedRowHandle);
+            //    if (row == null) return;
+            //    var isSuccess = _empDAL.CreateStore("sp_Employees_Delete", new
+            //    {
+            //        EmpID =  row["EmpID"].ToString()
+            //    });
+            //    if (isSuccess == null)
+            //    {
+            //        MessageBox.Show("Có lỗi hệ thống, không xóa được.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        return;
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Xóa thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        Process();
+            //    }
+            //}
         }
 
         private void gvDSNV_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
