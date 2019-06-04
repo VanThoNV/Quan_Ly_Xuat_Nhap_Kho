@@ -151,5 +151,9 @@ namespace QuanLyXuatNhapKho.DAL
             };
             return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
         }
+        public DataSet CreateStore(string procedureName, object model)
+        {
+            return _helper.ExecuteStoredProcedure(procedureName, model);
+        }
     }
 }

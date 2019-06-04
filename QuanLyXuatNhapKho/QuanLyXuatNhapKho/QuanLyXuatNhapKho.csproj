@@ -114,6 +114,12 @@
     <Compile Include="frmMain1.Designer.cs">
       <DependentUpon>frmMain1.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucQuanLyNguoiDung.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucQuanLyNguoiDung.Designer.cs">
+      <DependentUpon>ucQuanLyNguoiDung.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils\SecurityHelper.cs" />
     <Compile Include="Utils\Utils.cs" />
     <Compile Include="ucQuanLyNhanVien.cs">
@@ -148,6 +154,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ucQuanLyNguoiDung.resx">
+      <DependentUpon>ucQuanLyNguoiDung.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ucQuanLyNhanVien.resx">
       <DependentUpon>ucQuanLyNhanVien.cs</DependentUpon>
     </EmbeddedResource>

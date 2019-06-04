@@ -38,6 +38,8 @@ namespace QuanLyXuatNhapKho.DTO
 
         public bool IsDeleted { get; set; }
 
+        public string Image { get; set; }
+
     }
 
 }

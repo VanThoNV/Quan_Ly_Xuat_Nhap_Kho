@@ -14,20 +14,26 @@ namespace QuanLyXuatNhapKho
 {
     public partial class frmMain1 : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        ucQuanLyNhanVien ucQLNV = new ucQuanLyNhanVien();
+
         public frmMain1()
         {
             InitializeComponent();
         }
 
         private void btnQLNV_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            ucQuanLyNhanVien1.Visible = true;
-            ucQuanLyNhanVien1.Process();
+        {    
+            ucQLNV.Process();
+            ucQLNV.Dock = DockStyle.Top;
+            pnMain.Controls.Clear();
+            pnMain.Controls.Add(ucQLNV);
+            //ucQuanLyNhanVien1.Visible = true;
+            //ucQuanLyNhanVien1.Process();
         }
 
         private void frmMain1_Load(object sender, EventArgs e)
         {
-            ucQuanLyNhanVien1.Visible = false;
+            //ucQuanLyNhanVien1.Visible = false;
         }
 
         private void ribbon_TabIndexChanged(object sender, EventArgs e)

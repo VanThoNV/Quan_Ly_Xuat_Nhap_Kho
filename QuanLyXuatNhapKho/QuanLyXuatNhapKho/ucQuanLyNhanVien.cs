@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using QuanLyXuatNhapKho.DTO;
 using QuanLyXuatNhapKho.DAL;
+using System.IO;
 
 namespace QuanLyXuatNhapKho
 {
@@ -17,15 +18,16 @@ namespace QuanLyXuatNhapKho
     {
         List<Employees> _emps;
         EmployeesDAL _empDAL = new EmployeesDAL();
+        string appPath = Path.GetDirectoryName(Application.ExecutablePath) + @"\Images\"; 
         public ucQuanLyNhanVien()
         {
             InitializeComponent();
         }
         public void Process()
         {
-            //var ds = _empDAL.CreateStore("sp_Employees_GetAll", null);
-            //gDSNV.DataSource = ds.Tables[0];
-            //gvDSNV_Click(null, null);
+            var ds = _empDAL.CreateStore("sp_Employees_GetAll", null);
+            gDSNV.DataSource = ds.Tables[0];
+            gvDSNV_Click(null, null);
         }
 
         private void gvDSNV_Click(object sender, EventArgs e)
@@ -43,6 +45,15 @@ namespace QuanLyXuatNhapKho
             txtSDT.Text = row["Phone"].ToString();
             rdbNam.Checked = row["Sex"].ToString() == "Nam" ? true : false;
             rdbNu.Checked = row["Sex"].ToString() == "Nam" ? false : true;
+            if (File.Exists(appPath + row["Image"].ToString()))
+            {
+                pictureEdit1.Image = Image.FromFile(appPath + row["Image"].ToString());
+            }
+            else
+            {
+                pictureEdit1.Image = null;
+            }
+            
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
@@ -62,34 +73,37 @@ namespace QuanLyXuatNhapKho
             dateNgayLamViec.EditValue = null;
             rdbNam.Checked = true;
             rdbNu.Checked = false;
+
+            
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //var isSuccess = _empDAL.CreateStore("sp_Employees_Save", new
-            //{
-            //    EmpID = txtMaNV.Text,
-            //    IdentityCard = txtCMND.Text,
-            //    FullName = txtHoTen.Text,
-            //    BirthDay = dateNgaySinh.DateTime,
-            //    WorkDay = dateNgayLamViec.DateTime,
-            //    Email = txtEmail.Text,
-            //    Phone = txtSDT.Text,
-            //    Address = txtDiaChi.Text,
-            //    Note = txtGhiChu.Text,
-            //    Sex = rdbNam.Checked,
-            //    UserID = Program.CurrentUser.ID
-            //});
-            //if (isSuccess == null)
-            //{
-            //    MessageBox.Show("Có lỗi hệ thống, không lưu được.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Lưu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    Process();
-            //}
+            var isSuccess = _empDAL.CreateStore("sp_Employees_Save", new
+            {
+                EmpID = txtMaNV.Text,
+                IdentityCard = txtCMND.Text,
+                FullName = txtHoTen.Text,
+                BirthDay = dateNgaySinh.DateTime,
+                WorkDay = dateNgayLamViec.DateTime,
+                Email = txtEmail.Text,
+                Phone = txtSDT.Text,
+                Address = txtDiaChi.Text,
+                Note = txtGhiChu.Text,
+                Sex = rdbNam.Checked,
+                Image = pictureEdit1.Name,
+                UserID = Program.CurrentUser.ID
+            });
+            if (isSuccess == null)
+            {
+                MessageBox.Show("Có lỗi hệ thống, không lưu được.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                MessageBox.Show("Lưu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Process();
+            }
 
         }
 
@@ -100,26 +114,26 @@ namespace QuanLyXuatNhapKho
 
         private void repositoryItemButtonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            //DialogResult result = MessageBox.Show("Bạn có muốn xóa nhân viên này không?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            //if (result == DialogResult.Yes)
-            //{
-            //    var row = gvDSNV.GetDataRow(gvDSNV.FocusedRowHandle);
-            //    if (row == null) return;
-            //    var isSuccess = _empDAL.CreateStore("sp_Employees_Delete", new
-            //    {
-            //        EmpID =  row["EmpID"].ToString()
-            //    });
-            //    if (isSuccess == null)
-            //    {
-            //        MessageBox.Show("Có lỗi hệ thống, không xóa được.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        return;
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Xóa thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        Process();
-            //    }
-            //}
+            DialogResult result = MessageBox.Show("Bạn có muốn xóa nhân viên này không?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                var row = gvDSNV.GetDataRow(gvDSNV.FocusedRowHandle);
+                if (row == null) return;
+                var isSuccess = _empDAL.CreateStore("sp_Employees_Delete", new
+                {
+                    EmpID = row["EmpID"].ToString()
+                });
+                if (isSuccess == null)
+                {
+                    MessageBox.Show("Có lỗi hệ thống, không xóa được.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("Xóa thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Process();
+                }
+            }
         }
 
         private void gvDSNV_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
@@ -130,6 +144,44 @@ namespace QuanLyXuatNhapKho
         private void textEdit7_TextChanged(object sender, EventArgs e)
         {
             gvDSNV.ActiveFilterString = "[EmpID] like '%" + txtSearch.Text.Trim() + "%' OR [FullName] like '%" + txtSearch.Text.Trim() + "%' OR [Phone] like '%" + txtSearch.Text.Trim() + "%'";
+        }
+
+        private void pictureEdit1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog open = new OpenFileDialog();
+            // image filters  
+            open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
+            if (Directory.Exists(appPath) == false)                                              // <---
+            {                                                                                    // <---
+                Directory.CreateDirectory(appPath);                                              // <---
+            } 
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    string iName = open.SafeFileName;   // <---
+                    string filepath = open.FileName;
+                    if (File.Exists(appPath + iName))
+                    {
+                        pictureEdit1.Name = iName;
+                        pictureEdit1.Image = Image.FromFile(open.FileName);
+                        
+                        return;
+                    }
+                    File.Copy(filepath, appPath + iName); // <---
+                    pictureEdit1.Name = iName;
+                    pictureEdit1.Image = Image.FromFile(open.FileName);
+                   
+                }
+                catch (Exception exp)
+                {
+                    MessageBox.Show("Unable to open file " + exp.Message);
+                }
+            }
+            else
+            {
+                open.Dispose();
+            }
         }
     }
 }

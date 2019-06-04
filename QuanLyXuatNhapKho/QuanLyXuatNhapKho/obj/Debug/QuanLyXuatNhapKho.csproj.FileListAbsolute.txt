@@ -13,3 +13,4 @@ C:\Tho\QuanLyXuatNhapKho\Quan_Ly_Xuat_Nhap_Kho\QuanLyXuatNhapKho\QuanLyXuatNhapK
 C:\Tho\QuanLyXuatNhapKho\Quan_Ly_Xuat_Nhap_Kho\QuanLyXuatNhapKho\QuanLyXuatNhapKho\obj\Debug\QuanLyXuatNhapKho.pdb
 C:\Tho\QuanLyXuatNhapKho\Quan_Ly_Xuat_Nhap_Kho\QuanLyXuatNhapKho\QuanLyXuatNhapKho\obj\Debug\QuanLyXuatNhapKho.exe.licenses
 C:\Tho\QuanLyXuatNhapKho\Quan_Ly_Xuat_Nhap_Kho\QuanLyXuatNhapKho\QuanLyXuatNhapKho\obj\Debug\QuanLyXuatNhapKho.csprojResolveAssemblyReference.cache
+C:\Tho\QuanLyXuatNhapKho\Quan_Ly_Xuat_Nhap_Kho\QuanLyXuatNhapKho\QuanLyXuatNhapKho\obj\Debug\QuanLyXuatNhapKho.ucQuanLyNguoiDung.resources

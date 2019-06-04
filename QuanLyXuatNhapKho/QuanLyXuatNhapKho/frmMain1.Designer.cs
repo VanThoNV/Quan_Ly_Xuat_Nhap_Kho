@@ -61,7 +61,7 @@
             this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
             this.pnMain = new DevExpress.XtraEditors.PanelControl();
-            this.ucQuanLyNhanVien1 = new QuanLyXuatNhapKho.ucQuanLyNhanVien();
+           // this.ucQuanLyNhanVien1 = new QuanLyXuatNhapKho.ucQuanLyNhanVien();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgCLT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
@@ -335,7 +335,7 @@
             // 
             // pnMain
             // 
-            this.pnMain.Controls.Add(this.ucQuanLyNhanVien1);
+           // this.pnMain.Controls.Add(this.ucQuanLyNhanVien1);
             this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnMain.Location = new System.Drawing.Point(200, 146);
             this.pnMain.Name = "pnMain";
@@ -344,11 +344,11 @@
             // 
             // ucQuanLyNhanVien1
             // 
-            this.ucQuanLyNhanVien1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucQuanLyNhanVien1.Location = new System.Drawing.Point(2, 2);
-            this.ucQuanLyNhanVien1.Name = "ucQuanLyNhanVien1";
-            this.ucQuanLyNhanVien1.Size = new System.Drawing.Size(963, 517);
-            this.ucQuanLyNhanVien1.TabIndex = 0;
+            //this.ucQuanLyNhanVien1.Dock = System.Windows.Forms.DockStyle.Fill;
+            //this.ucQuanLyNhanVien1.Location = new System.Drawing.Point(2, 2);
+            //this.ucQuanLyNhanVien1.Name = "ucQuanLyNhanVien1";
+            //this.ucQuanLyNhanVien1.Size = new System.Drawing.Size(963, 517);
+            //this.ucQuanLyNhanVien1.TabIndex = 0;
             // 
             // frmMain1
             // 
@@ -414,7 +414,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
         private DevExpress.XtraNavBar.NavBarItem navBarItem3;
         private DevExpress.XtraEditors.PanelControl pnMain;
-        private ucQuanLyNhanVien ucQuanLyNhanVien1;
+       // private ucQuanLyNhanVien ucQuanLyNhanVien1;
         //private ucQuanLyNhanVien ucQuanLyNhanVien1;
     }
 }
