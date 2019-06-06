@@ -56,7 +56,7 @@ namespace QuanLyXuatNhapKho
 
             byte[] keyArray;
             //convert chuỗi thành mảng byte để giải mã:
-            byte[] toEncryptArray = Convert.FromBase64String(toDecrypt);
+             byte[] toEncryptArray = Convert.FromBase64String(toDecrypt);
 
             if (useHashing)
             {

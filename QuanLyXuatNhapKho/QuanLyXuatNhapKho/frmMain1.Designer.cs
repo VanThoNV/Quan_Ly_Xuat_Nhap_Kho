@@ -61,7 +61,6 @@
             this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
             this.pnMain = new DevExpress.XtraEditors.PanelControl();
-           // this.ucQuanLyNhanVien1 = new QuanLyXuatNhapKho.ucQuanLyNhanVien();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgCLT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
@@ -69,7 +68,6 @@
             this.dockPanel1_Container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnMain)).BeginInit();
-            this.pnMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // ribbon
@@ -126,6 +124,7 @@
             this.btnDoiMatKhau.Id = 2;
             this.btnDoiMatKhau.ImageOptions.ImageIndex = 3;
             this.btnDoiMatKhau.Name = "btnDoiMatKhau";
+            this.btnDoiMatKhau.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDoiMatKhau_ItemClick);
             // 
             // barButtonItem3
             // 
@@ -133,6 +132,7 @@
             this.barButtonItem3.Id = 4;
             this.barButtonItem3.ImageOptions.ImageIndex = 1;
             this.barButtonItem3.Name = "barButtonItem3";
+            this.barButtonItem3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem3_ItemClick);
             // 
             // btnPhanQuyen
             // 
@@ -142,6 +142,7 @@
             this.btnPhanQuyen.Name = "btnPhanQuyen";
             this.btnPhanQuyen.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
             | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText)));
+            this.btnPhanQuyen.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPhanQuyen_ItemClick);
             // 
             // btnSaoLuu
             // 
@@ -335,20 +336,11 @@
             // 
             // pnMain
             // 
-           // this.pnMain.Controls.Add(this.ucQuanLyNhanVien1);
             this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnMain.Location = new System.Drawing.Point(200, 146);
             this.pnMain.Name = "pnMain";
             this.pnMain.Size = new System.Drawing.Size(967, 521);
             this.pnMain.TabIndex = 3;
-            // 
-            // ucQuanLyNhanVien1
-            // 
-            //this.ucQuanLyNhanVien1.Dock = System.Windows.Forms.DockStyle.Fill;
-            //this.ucQuanLyNhanVien1.Location = new System.Drawing.Point(2, 2);
-            //this.ucQuanLyNhanVien1.Name = "ucQuanLyNhanVien1";
-            //this.ucQuanLyNhanVien1.Size = new System.Drawing.Size(963, 517);
-            //this.ucQuanLyNhanVien1.TabIndex = 0;
             // 
             // frmMain1
             // 
@@ -375,7 +367,6 @@
             this.dockPanel1_Container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnMain)).EndInit();
-            this.pnMain.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
