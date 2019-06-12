@@ -153,6 +153,7 @@ namespace QuanLyXuatNhapKho.DAL
             return res;
 
         }
+
         public DataSet ExecuteStoredProcedure(string procedureName, object model)
         {
             DataSet data = new DataSet();
@@ -169,11 +170,11 @@ namespace QuanLyXuatNhapKho.DAL
                     {
                         cm.Parameters.Add(param);
                     }
-                }               
-                SqlDataAdapter da = new SqlDataAdapter(cm);         
+                }
+                SqlDataAdapter da = new SqlDataAdapter(cm);
                 da.Fill(data);
                 //cm.ExecuteNonQuery();
-                DisConnect();               
+                DisConnect();
             }
             catch (Exception ex)
             {
@@ -181,6 +182,25 @@ namespace QuanLyXuatNhapKho.DAL
                 throw ex;
             }
             return data;
+        }
+        public DataSet ExcuteStore(Dictionary<string, object> query)
+        {
+            DataSet dataset = new DataSet();
+            int i = 0;
+            foreach (KeyValuePair<string, object> q in query)
+            {
+                DataSet data = ExecuteStoredProcedure(q.Key, q.Value);
+                for (int j = 0; j < data.Tables.Count; j++)
+                {
+                    data.Tables[j].TableName = "Table" + i++;
+                    dataset.Tables.Add(data.Tables[j].Copy());
+                }
+            }
+            return dataset;
+        }
+        public DataSet ExcuteStore(string storeName, Object ob)
+        {
+            return ExecuteStoredProcedure(storeName, ob);
         }
         private List<SqlParameter> GenerateSQLParameters(object model)
         {
@@ -205,6 +225,10 @@ namespace QuanLyXuatNhapKho.DAL
         public string GetUserID()
         {
             return Program.CurrentUser.ID;
-        }       
+        }
+        public string GetNameDataBase()
+        {
+            return cn.Database;
+        }
     }
 }

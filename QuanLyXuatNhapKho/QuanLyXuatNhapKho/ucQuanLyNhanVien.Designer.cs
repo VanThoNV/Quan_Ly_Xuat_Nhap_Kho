@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucQuanLyNhanVien));
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -41,8 +41,7 @@
             this.rdbNu = new System.Windows.Forms.RadioButton();
             this.rdbNam = new System.Windows.Forms.RadioButton();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
-            this.buttonEdit2 = new DevExpress.XtraEditors.ButtonEdit();
-            this.buttonEdit1 = new DevExpress.XtraEditors.ButtonEdit();
+            this.btnChangePicture = new DevExpress.XtraEditors.SimpleButton();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.txtGhiChu = new DevExpress.XtraEditors.TextEdit();
             this.dateNgayLamViec = new DevExpress.XtraEditors.DateEdit();
@@ -86,8 +85,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGhiChu.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNgayLamViec.Properties.CalendarTimeProperties)).BeginInit();
@@ -113,6 +110,8 @@
             // 
             // groupControl1
             // 
+            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.groupControl1.AppearanceCaption.Options.UseFont = true;
             this.groupControl1.AppearanceCaption.Options.UseTextOptions = true;
             this.groupControl1.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.groupControl1.Controls.Add(this.txtEmail);
@@ -140,34 +139,39 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(889, 254);
+            this.groupControl1.Size = new System.Drawing.Size(889, 269);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Thông tin nhân viên";
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(481, 34);
+            this.txtEmail.Location = new System.Drawing.Point(493, 34);
             this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtEmail.Properties.Appearance.Options.UseFont = true;
             this.txtEmail.Properties.Mask.EditMask = "[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
             this.txtEmail.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.txtEmail.Size = new System.Drawing.Size(227, 20);
-            this.txtEmail.TabIndex = 23;
+            this.txtEmail.Size = new System.Drawing.Size(227, 26);
+            this.txtEmail.TabIndex = 10;
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(398, 37);
+            this.labelControl10.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.labelControl10.Appearance.Options.UseFont = true;
+            this.labelControl10.Location = new System.Drawing.Point(398, 41);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(28, 13);
+            this.labelControl10.Size = new System.Drawing.Size(35, 19);
             this.labelControl10.TabIndex = 22;
             this.labelControl10.Text = "Email:";
             // 
             // rdbNu
             // 
             this.rdbNu.AutoSize = true;
-            this.rdbNu.Location = new System.Drawing.Point(554, 150);
+            this.rdbNu.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.rdbNu.Location = new System.Drawing.Point(567, 158);
             this.rdbNu.Name = "rdbNu";
-            this.rdbNu.Size = new System.Drawing.Size(39, 17);
-            this.rdbNu.TabIndex = 21;
+            this.rdbNu.Size = new System.Drawing.Size(45, 23);
+            this.rdbNu.TabIndex = 17;
             this.rdbNu.TabStop = true;
             this.rdbNu.Text = "Nữ";
             this.rdbNu.UseVisualStyleBackColor = true;
@@ -175,238 +179,266 @@
             // rdbNam
             // 
             this.rdbNam.AutoSize = true;
-            this.rdbNam.Location = new System.Drawing.Point(481, 150);
+            this.rdbNam.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.rdbNam.Location = new System.Drawing.Point(494, 158);
             this.rdbNam.Name = "rdbNam";
-            this.rdbNam.Size = new System.Drawing.Size(49, 17);
-            this.rdbNam.TabIndex = 20;
+            this.rdbNam.Size = new System.Drawing.Size(60, 23);
+            this.rdbNam.TabIndex = 16;
             this.rdbNam.TabStop = true;
             this.rdbNam.Text = "Nam ";
             this.rdbNam.UseVisualStyleBackColor = true;
             // 
             // groupControl2
             // 
+            this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.groupControl2.AppearanceCaption.Options.UseFont = true;
             this.groupControl2.AppearanceCaption.Options.UseTextOptions = true;
             this.groupControl2.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.groupControl2.Controls.Add(this.buttonEdit2);
-            this.groupControl2.Controls.Add(this.buttonEdit1);
+            this.groupControl2.Controls.Add(this.btnChangePicture);
             this.groupControl2.Controls.Add(this.pictureEdit1);
-            this.groupControl2.Location = new System.Drawing.Point(726, 32);
+            this.groupControl2.Location = new System.Drawing.Point(732, 32);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(146, 211);
+            this.groupControl2.Size = new System.Drawing.Size(146, 224);
             this.groupControl2.TabIndex = 19;
             this.groupControl2.Text = "Hình nhân viên";
             // 
-            // buttonEdit2
+            // btnChangePicture
             // 
-            this.buttonEdit2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonEdit2.EditValue = "Lưu";
-            this.buttonEdit2.Location = new System.Drawing.Point(94, 186);
-            this.buttonEdit2.Name = "buttonEdit2";
-            this.buttonEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.buttonEdit2.Size = new System.Drawing.Size(45, 20);
-            this.buttonEdit2.TabIndex = 2;
-            // 
-            // buttonEdit1
-            // 
-            this.buttonEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonEdit1.EditValue = "Đổi hình";
-            this.buttonEdit1.Location = new System.Drawing.Point(5, 186);
-            this.buttonEdit1.Name = "buttonEdit1";
-            this.buttonEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.buttonEdit1.Size = new System.Drawing.Size(58, 20);
-            this.buttonEdit1.TabIndex = 1;
+            this.btnChangePicture.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.btnChangePicture.Appearance.Options.UseFont = true;
+            this.btnChangePicture.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnChangePicture.ImageOptions.Image")));
+            this.btnChangePicture.Location = new System.Drawing.Point(5, 190);
+            this.btnChangePicture.Name = "btnChangePicture";
+            this.btnChangePicture.Size = new System.Drawing.Size(85, 30);
+            this.btnChangePicture.TabIndex = 25;
+            this.btnChangePicture.Text = "Đổi ảnh";
+            this.btnChangePicture.Click += new System.EventHandler(this.btnChangePicture_Click);
             // 
             // pictureEdit1
             // 
             this.pictureEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureEdit1.Location = new System.Drawing.Point(5, 26);
+            this.pictureEdit1.Location = new System.Drawing.Point(5, 30);
             this.pictureEdit1.Name = "pictureEdit1";
+            this.pictureEdit1.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.pictureEdit1.Properties.Appearance.Options.UseFont = true;
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit1.Size = new System.Drawing.Size(134, 157);
-            this.pictureEdit1.TabIndex = 0;
+            this.pictureEdit1.Size = new System.Drawing.Size(134, 156);
+            this.pictureEdit1.TabIndex = 20;
             this.pictureEdit1.Click += new System.EventHandler(this.pictureEdit1_Click);
             // 
             // txtGhiChu
             // 
-            this.txtGhiChu.Location = new System.Drawing.Point(100, 223);
+            this.txtGhiChu.Location = new System.Drawing.Point(107, 230);
             this.txtGhiChu.Name = "txtGhiChu";
-            this.txtGhiChu.Size = new System.Drawing.Size(608, 20);
-            this.txtGhiChu.TabIndex = 18;
+            this.txtGhiChu.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtGhiChu.Properties.Appearance.Options.UseFont = true;
+            this.txtGhiChu.Size = new System.Drawing.Size(613, 26);
+            this.txtGhiChu.TabIndex = 19;
             // 
             // dateNgayLamViec
             // 
             this.dateNgayLamViec.EditValue = null;
-            this.dateNgayLamViec.Location = new System.Drawing.Point(481, 107);
+            this.dateNgayLamViec.Location = new System.Drawing.Point(493, 115);
             this.dateNgayLamViec.Name = "dateNgayLamViec";
+            this.dateNgayLamViec.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.dateNgayLamViec.Properties.Appearance.Options.UseFont = true;
             this.dateNgayLamViec.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateNgayLamViec.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateNgayLamViec.Size = new System.Drawing.Size(227, 20);
-            this.dateNgayLamViec.TabIndex = 17;
+            this.dateNgayLamViec.Size = new System.Drawing.Size(227, 26);
+            this.dateNgayLamViec.TabIndex = 14;
             // 
             // dateNgaySinh
             // 
             this.dateNgaySinh.EditValue = null;
-            this.dateNgaySinh.Location = new System.Drawing.Point(481, 72);
+            this.dateNgaySinh.Location = new System.Drawing.Point(493, 76);
             this.dateNgaySinh.Name = "dateNgaySinh";
+            this.dateNgaySinh.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.dateNgaySinh.Properties.Appearance.Options.UseFont = true;
             this.dateNgaySinh.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateNgaySinh.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateNgaySinh.Size = new System.Drawing.Size(227, 20);
-            this.dateNgaySinh.TabIndex = 16;
+            this.dateNgaySinh.Size = new System.Drawing.Size(227, 26);
+            this.dateNgaySinh.TabIndex = 12;
             // 
             // txtDiaChi
             // 
-            this.txtDiaChi.Location = new System.Drawing.Point(100, 184);
+            this.txtDiaChi.Location = new System.Drawing.Point(107, 191);
             this.txtDiaChi.Name = "txtDiaChi";
-            this.txtDiaChi.Size = new System.Drawing.Size(608, 20);
-            this.txtDiaChi.TabIndex = 14;
+            this.txtDiaChi.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtDiaChi.Properties.Appearance.Options.UseFont = true;
+            this.txtDiaChi.Size = new System.Drawing.Size(613, 26);
+            this.txtDiaChi.TabIndex = 1;
             // 
             // txtSDT
             // 
-            this.txtSDT.Location = new System.Drawing.Point(100, 149);
+            this.txtSDT.Location = new System.Drawing.Point(107, 153);
             this.txtSDT.Name = "txtSDT";
-            this.txtSDT.Properties.Mask.EditMask = "((([+]\\d{0,2})?\\s?)|([0]))(\\d{4})\\s?[-]?(\\d{5})";
-            this.txtSDT.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.txtSDT.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txtSDT.Size = new System.Drawing.Size(206, 20);
-            this.txtSDT.TabIndex = 13;
+            this.txtSDT.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtSDT.Properties.Appearance.Options.UseFont = true;
+            this.txtSDT.Properties.Mask.EditMask = "0000 000 000";
+            this.txtSDT.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Simple;
+            this.txtSDT.Size = new System.Drawing.Size(206, 26);
+            this.txtSDT.TabIndex = 15;
+            this.txtSDT.Click += new System.EventHandler(this.txtSDT_Click);
             // 
             // txtCMND
             // 
-            this.txtCMND.Location = new System.Drawing.Point(100, 111);
+            this.txtCMND.Location = new System.Drawing.Point(107, 115);
             this.txtCMND.Name = "txtCMND";
+            this.txtCMND.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtCMND.Properties.Appearance.Options.UseFont = true;
             this.txtCMND.Properties.Mask.EditMask = "000 000 000";
             this.txtCMND.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Simple;
-            this.txtCMND.Properties.Mask.SaveLiteral = false;
-            this.txtCMND.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txtCMND.Size = new System.Drawing.Size(206, 20);
-            this.txtCMND.TabIndex = 11;
+            this.txtCMND.Size = new System.Drawing.Size(206, 26);
+            this.txtCMND.TabIndex = 13;
+            this.txtCMND.Click += new System.EventHandler(this.txtCMND_Click);
             // 
             // txtHoTen
             // 
-            this.txtHoTen.Location = new System.Drawing.Point(100, 72);
+            this.txtHoTen.Location = new System.Drawing.Point(107, 76);
             this.txtHoTen.Name = "txtHoTen";
-            this.txtHoTen.Size = new System.Drawing.Size(206, 20);
-            this.txtHoTen.TabIndex = 10;
+            this.txtHoTen.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtHoTen.Properties.Appearance.Options.UseFont = true;
+            this.txtHoTen.Size = new System.Drawing.Size(206, 26);
+            this.txtHoTen.TabIndex = 11;
             // 
             // txtMaNV
             // 
             this.txtMaNV.Enabled = false;
-            this.txtMaNV.Location = new System.Drawing.Point(100, 34);
+            this.txtMaNV.Location = new System.Drawing.Point(107, 38);
             this.txtMaNV.Name = "txtMaNV";
-            this.txtMaNV.Size = new System.Drawing.Size(206, 20);
+            this.txtMaNV.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtMaNV.Properties.Appearance.Options.UseFont = true;
+            this.txtMaNV.Size = new System.Drawing.Size(206, 26);
             this.txtMaNV.TabIndex = 9;
             // 
             // labelControl9
             // 
-            this.labelControl9.Location = new System.Drawing.Point(398, 114);
+            this.labelControl9.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.labelControl9.Appearance.Options.UseFont = true;
+            this.labelControl9.Location = new System.Drawing.Point(398, 122);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(70, 13);
+            this.labelControl9.Size = new System.Drawing.Size(88, 19);
             this.labelControl9.TabIndex = 8;
             this.labelControl9.Text = "Ngày làm việc:";
             // 
             // labelControl8
             // 
-            this.labelControl8.Location = new System.Drawing.Point(17, 230);
+            this.labelControl8.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.labelControl8.Appearance.Options.UseFont = true;
+            this.labelControl8.Location = new System.Drawing.Point(17, 238);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(39, 13);
+            this.labelControl8.Size = new System.Drawing.Size(50, 19);
             this.labelControl8.TabIndex = 7;
             this.labelControl8.Text = "Ghi chú:";
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(398, 152);
+            this.labelControl7.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.labelControl7.Appearance.Options.UseFont = true;
+            this.labelControl7.Location = new System.Drawing.Point(398, 160);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(42, 13);
+            this.labelControl7.Size = new System.Drawing.Size(55, 19);
             this.labelControl7.TabIndex = 6;
             this.labelControl7.Text = "Giới tính:";
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(17, 187);
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.labelControl6.Appearance.Options.UseFont = true;
+            this.labelControl6.Location = new System.Drawing.Point(17, 195);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(36, 13);
+            this.labelControl6.Size = new System.Drawing.Size(44, 19);
             this.labelControl6.TabIndex = 5;
             this.labelControl6.Text = "Địa chỉ:";
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(17, 152);
+            this.labelControl5.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.labelControl5.Appearance.Options.UseFont = true;
+            this.labelControl5.Location = new System.Drawing.Point(17, 160);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(66, 13);
+            this.labelControl5.Size = new System.Drawing.Size(83, 19);
             this.labelControl5.TabIndex = 4;
             this.labelControl5.Text = "Số điện thoại:";
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(398, 75);
+            this.labelControl4.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.labelControl4.Appearance.Options.UseFont = true;
+            this.labelControl4.Location = new System.Drawing.Point(398, 83);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(51, 13);
+            this.labelControl4.Size = new System.Drawing.Size(64, 19);
             this.labelControl4.TabIndex = 3;
             this.labelControl4.Text = "Ngày sinh:";
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(17, 114);
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.labelControl3.Appearance.Options.UseFont = true;
+            this.labelControl3.Location = new System.Drawing.Point(17, 122);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(48, 13);
+            this.labelControl3.Size = new System.Drawing.Size(64, 19);
             this.labelControl3.TabIndex = 2;
             this.labelControl3.Text = "Số CMND:";
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(17, 75);
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.labelControl2.Appearance.Options.UseFont = true;
+            this.labelControl2.Location = new System.Drawing.Point(17, 83);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(53, 13);
+            this.labelControl2.Size = new System.Drawing.Size(64, 19);
             this.labelControl2.TabIndex = 1;
             this.labelControl2.Text = "Họ và Tên:";
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(17, 41);
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Location = new System.Drawing.Point(17, 45);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(68, 13);
+            this.labelControl1.Size = new System.Drawing.Size(87, 19);
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Mã nhân viên:";
             // 
             // groupControl3
             // 
+            this.groupControl3.AppearanceCaption.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.groupControl3.AppearanceCaption.Options.UseFont = true;
             this.groupControl3.AppearanceCaption.Options.UseTextOptions = true;
             this.groupControl3.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.groupControl3.Controls.Add(this.gDSNV);
             this.groupControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl3.Location = new System.Drawing.Point(0, 288);
+            this.groupControl3.Location = new System.Drawing.Point(0, 310);
             this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(889, 221);
+            this.groupControl3.Size = new System.Drawing.Size(889, 199);
             this.groupControl3.TabIndex = 1;
             this.groupControl3.Text = "Danh sách nhân viên";
             // 
             // gDSNV
             // 
             this.gDSNV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gDSNV.Location = new System.Drawing.Point(2, 23);
+            this.gDSNV.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.gDSNV.Location = new System.Drawing.Point(2, 27);
             this.gDSNV.MainView = this.gvDSNV;
             this.gDSNV.Name = "gDSNV";
             this.gDSNV.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit1});
-            this.gDSNV.Size = new System.Drawing.Size(885, 196);
+            this.gDSNV.Size = new System.Drawing.Size(885, 170);
             this.gDSNV.TabIndex = 0;
             this.gDSNV.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvDSNV});
             // 
             // gvDSNV
             // 
+            this.gvDSNV.Appearance.HeaderPanel.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.gvDSNV.Appearance.HeaderPanel.Options.UseFont = true;
             this.gvDSNV.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
             this.gridColumn2,
@@ -428,6 +460,12 @@
             // 
             // gridColumn1
             // 
+            this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.gridColumn1.AppearanceCell.Options.UseFont = true;
+            this.gridColumn1.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn1.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn1.Caption = "Mã nhân viên";
             this.gridColumn1.FieldName = "EmpID";
             this.gridColumn1.Name = "gridColumn1";
@@ -440,6 +478,10 @@
             // 
             // gridColumn2
             // 
+            this.gridColumn2.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.gridColumn2.AppearanceCell.Options.UseFont = true;
+            this.gridColumn2.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn2.Caption = "Họ và tên";
             this.gridColumn2.FieldName = "FullName";
             this.gridColumn2.Name = "gridColumn2";
@@ -452,6 +494,12 @@
             // 
             // gridColumn3
             // 
+            this.gridColumn3.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.gridColumn3.AppearanceCell.Options.UseFont = true;
+            this.gridColumn3.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn3.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn3.Caption = "Số CMND";
             this.gridColumn3.FieldName = "IdentityCard";
             this.gridColumn3.Name = "gridColumn3";
@@ -464,6 +512,12 @@
             // 
             // gridColumn4
             // 
+            this.gridColumn4.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.gridColumn4.AppearanceCell.Options.UseFont = true;
+            this.gridColumn4.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn4.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn4.Caption = "Số điện thoại";
             this.gridColumn4.FieldName = "Phone";
             this.gridColumn4.Name = "gridColumn4";
@@ -476,6 +530,12 @@
             // 
             // gridColumn5
             // 
+            this.gridColumn5.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.gridColumn5.AppearanceCell.Options.UseFont = true;
+            this.gridColumn5.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn5.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn5.Caption = "Ngày sinh";
             this.gridColumn5.FieldName = "BirthDay";
             this.gridColumn5.Name = "gridColumn5";
@@ -488,6 +548,12 @@
             // 
             // gridColumn6
             // 
+            this.gridColumn6.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.gridColumn6.AppearanceCell.Options.UseFont = true;
+            this.gridColumn6.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn6.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn6.Caption = "Ngày làm việc";
             this.gridColumn6.FieldName = "WorkDay";
             this.gridColumn6.Name = "gridColumn6";
@@ -500,6 +566,12 @@
             // 
             // gridColumn7
             // 
+            this.gridColumn7.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.gridColumn7.AppearanceCell.Options.UseFont = true;
+            this.gridColumn7.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn7.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn7.Caption = "Giới tính";
             this.gridColumn7.FieldName = "Sex";
             this.gridColumn7.Name = "gridColumn7";
@@ -512,6 +584,10 @@
             // 
             // gridColumn8
             // 
+            this.gridColumn8.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.gridColumn8.AppearanceCell.Options.UseFont = true;
+            this.gridColumn8.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn8.Caption = "Địa chỉ";
             this.gridColumn8.FieldName = "Address";
             this.gridColumn8.Name = "gridColumn8";
@@ -524,6 +600,10 @@
             // 
             // gridColumn9
             // 
+            this.gridColumn9.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.gridColumn9.AppearanceCell.Options.UseFont = true;
+            this.gridColumn9.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn9.Caption = "Ghi chú";
             this.gridColumn9.FieldName = "Note";
             this.gridColumn9.Name = "gridColumn9";
@@ -561,15 +641,15 @@
             this.panelControl1.Controls.Add(this.btnAdd);
             this.panelControl1.Controls.Add(this.txtSearch);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelControl1.Location = new System.Drawing.Point(0, 254);
+            this.panelControl1.Location = new System.Drawing.Point(0, 269);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(889, 34);
+            this.panelControl1.Size = new System.Drawing.Size(889, 41);
             this.panelControl1.TabIndex = 2;
             // 
             // pictureEdit2
             // 
             this.pictureEdit2.EditValue = ((object)(resources.GetObject("pictureEdit2.EditValue")));
-            this.pictureEdit2.Location = new System.Drawing.Point(494, 8);
+            this.pictureEdit2.Location = new System.Drawing.Point(492, 14);
             this.pictureEdit2.Name = "pictureEdit2";
             this.pictureEdit2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit2.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
@@ -578,30 +658,38 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(637, 4);
+            this.btnSave.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.btnSave.Appearance.Options.UseFont = true;
+            this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
+            this.btnSave.Location = new System.Drawing.Point(637, 5);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(71, 24);
-            this.btnSave.TabIndex = 21;
+            this.btnSave.Size = new System.Drawing.Size(83, 30);
+            this.btnSave.TabIndex = 24;
             this.btnSave.Text = "Lưu";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(549, 4);
+            this.btnAdd.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.btnAdd.Appearance.Options.UseFont = true;
+            this.btnAdd.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageOptions.Image")));
+            this.btnAdd.Location = new System.Drawing.Point(542, 6);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(71, 24);
-            this.btnAdd.TabIndex = 20;
+            this.btnAdd.Size = new System.Drawing.Size(83, 30);
+            this.btnAdd.TabIndex = 23;
             this.btnAdd.Text = "Thêm ";
             this.btnAdd.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(17, 7);
+            this.txtSearch.Location = new System.Drawing.Point(17, 9);
             this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtSearch.Properties.Appearance.Options.UseFont = true;
             this.txtSearch.Properties.HtmlImages = this.imageCollection1;
             this.txtSearch.Properties.NullValuePrompt = "Tìm kiếm";
-            this.txtSearch.Size = new System.Drawing.Size(502, 20);
-            this.txtSearch.TabIndex = 19;
+            this.txtSearch.Size = new System.Drawing.Size(502, 26);
+            this.txtSearch.TabIndex = 22;
             this.txtSearch.TextChanged += new System.EventHandler(this.textEdit7_TextChanged);
             // 
             // imageCollection1
@@ -625,8 +713,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGhiChu.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNgayLamViec.Properties.CalendarTimeProperties)).EndInit();
@@ -667,8 +753,6 @@
         private System.Windows.Forms.RadioButton rdbNu;
         private System.Windows.Forms.RadioButton rdbNam;
         private DevExpress.XtraEditors.GroupControl groupControl2;
-        private DevExpress.XtraEditors.ButtonEdit buttonEdit2;
-        private DevExpress.XtraEditors.ButtonEdit buttonEdit1;
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
         private DevExpress.XtraEditors.TextEdit txtGhiChu;
         private DevExpress.XtraEditors.DateEdit dateNgayLamViec;
@@ -700,5 +784,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl10;
         private DevExpress.Utils.ImageCollection imageCollection1;
         private DevExpress.XtraEditors.PictureEdit pictureEdit2;
+        private DevExpress.XtraEditors.SimpleButton btnChangePicture;
     }
 }

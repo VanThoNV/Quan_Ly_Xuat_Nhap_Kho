@@ -28,109 +28,124 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtUserName = new System.Windows.Forms.TextBox();
-            this.txtPassword = new System.Windows.Forms.TextBox();
-            this.btnDangNhap = new System.Windows.Forms.Button();
-            this.btnDong = new System.Windows.Forms.Button();
-            this.lblError = new System.Windows.Forms.Label();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.lblError = new DevExpress.XtraEditors.LabelControl();
+            this.txtUserName = new DevExpress.XtraEditors.TextEdit();
+            this.txtPassword = new DevExpress.XtraEditors.TextEdit();
+            this.btnDangNhap = new DevExpress.XtraEditors.SimpleButton();
+            this.btnDong = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // labelControl1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(46, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(348, 26);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Hệ Thống Quản Lý Xuất Nhập Kho";
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Location = new System.Drawing.Point(36, 79);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(94, 19);
+            this.labelControl1.TabIndex = 6;
+            this.labelControl1.Text = "Tên đăng nhập:";
             // 
-            // label2
+            // labelControl2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(34, 84);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Tên đăng nhập:";
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.labelControl2.Appearance.Options.UseFont = true;
+            this.labelControl2.Location = new System.Drawing.Point(36, 113);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(62, 19);
+            this.labelControl2.TabIndex = 7;
+            this.labelControl2.Text = "Mật khẩu:";
             // 
-            // label3
+            // lblError
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(33, 113);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Mật khẩu:";
+            this.lblError.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lblError.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblError.Appearance.Options.UseFont = true;
+            this.lblError.Appearance.Options.UseForeColor = true;
+            this.lblError.Location = new System.Drawing.Point(141, 138);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(206, 19);
+            this.lblError.TabIndex = 3;
+            this.lblError.Text = "Tên đăng nhập hoặc mật khẩu sai";
+            this.lblError.Visible = false;
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(124, 81);
+            this.txtUserName.EditValue = "Thonv";
+            this.txtUserName.Location = new System.Drawing.Point(141, 72);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(175, 21);
-            this.txtUserName.TabIndex = 3;
-            this.txtUserName.Text = "Thonv";
+            this.txtUserName.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtUserName.Properties.Appearance.Options.UseFont = true;
+            this.txtUserName.Size = new System.Drawing.Size(241, 26);
+            this.txtUserName.TabIndex = 1;
+            this.txtUserName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyUp);
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(124, 110);
+            this.txtPassword.EditValue = "1";
+            this.txtPassword.Location = new System.Drawing.Point(141, 106);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(175, 21);
-            this.txtPassword.TabIndex = 4;
-            this.txtPassword.Text = "1";
-            this.txtPassword.UseSystemPasswordChar = true;
+            this.txtPassword.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.txtPassword.Properties.Appearance.Options.UseFont = true;
+            this.txtPassword.Properties.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(241, 26);
+            this.txtPassword.TabIndex = 2;
             this.txtPassword.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyUp);
             // 
             // btnDangNhap
             // 
-            this.btnDangNhap.Location = new System.Drawing.Point(124, 158);
+            this.btnDangNhap.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.btnDangNhap.Appearance.Options.UseFont = true;
+            this.btnDangNhap.Location = new System.Drawing.Point(200, 163);
             this.btnDangNhap.Name = "btnDangNhap";
-            this.btnDangNhap.Size = new System.Drawing.Size(75, 23);
-            this.btnDangNhap.TabIndex = 5;
+            this.btnDangNhap.Size = new System.Drawing.Size(80, 30);
+            this.btnDangNhap.TabIndex = 4;
             this.btnDangNhap.Text = "Đăng nhập";
-            this.btnDangNhap.UseVisualStyleBackColor = true;
             this.btnDangNhap.Click += new System.EventHandler(this.btnDangNhap_Click);
             // 
             // btnDong
             // 
-            this.btnDong.Location = new System.Drawing.Point(224, 158);
+            this.btnDong.Appearance.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.btnDong.Appearance.Options.UseFont = true;
+            this.btnDong.Location = new System.Drawing.Point(302, 163);
             this.btnDong.Name = "btnDong";
-            this.btnDong.Size = new System.Drawing.Size(75, 23);
-            this.btnDong.TabIndex = 6;
+            this.btnDong.Size = new System.Drawing.Size(80, 30);
+            this.btnDong.TabIndex = 5;
             this.btnDong.Text = "Đóng";
-            this.btnDong.UseVisualStyleBackColor = true;
             this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
             // 
-            // lblError
+            // labelControl4
             // 
-            this.lblError.AutoSize = true;
-            this.lblError.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblError.Location = new System.Drawing.Point(121, 133);
-            this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(172, 13);
-            this.lblError.TabIndex = 7;
-            this.lblError.Text = "Tên đăng nhập hoặc mật khẩu sai.";
-            this.lblError.Visible = false;
+            this.labelControl4.Appearance.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.labelControl4.Appearance.Options.UseFont = true;
+            this.labelControl4.Location = new System.Drawing.Point(28, 11);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(369, 32);
+            this.labelControl4.TabIndex = 8;
+            this.labelControl4.Text = "Hệ Thống Quản Lý Xuất Nhập Kho";
             // 
             // frmDangNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(423, 193);
-            this.Controls.Add(this.lblError);
+            this.ClientSize = new System.Drawing.Size(423, 205);
+            this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.btnDong);
             this.Controls.Add(this.btnDangNhap);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUserName);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblError);
+            this.Controls.Add(this.labelControl2);
+            this.Controls.Add(this.labelControl1);
             this.Name = "frmDangNhap";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "7";
+            this.Text = "Quản lý xuất nhập kho";
+            ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -138,13 +153,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtUserName;
-        private System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.Button btnDangNhap;
-        private System.Windows.Forms.Button btnDong;
-        private System.Windows.Forms.Label lblError;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.LabelControl lblError;
+        private DevExpress.XtraEditors.TextEdit txtUserName;
+        private DevExpress.XtraEditors.TextEdit txtPassword;
+        private DevExpress.XtraEditors.SimpleButton btnDangNhap;
+        private DevExpress.XtraEditors.SimpleButton btnDong;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
     }
 }

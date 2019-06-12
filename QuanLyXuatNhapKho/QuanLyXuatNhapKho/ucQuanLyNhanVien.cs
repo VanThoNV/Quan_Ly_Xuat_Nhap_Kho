@@ -16,8 +16,8 @@ namespace QuanLyXuatNhapKho
 {
     public partial class ucQuanLyNhanVien : XtraUserControl
     {
-        List<Employees> _emps;
-        EmployeesDAL _empDAL = new EmployeesDAL();
+        //List<Employees> _emps;
+        DataHelper _helper = new DataHelper();
         string appPath = Path.GetDirectoryName(Application.ExecutablePath) + @"\Images\"; 
         public ucQuanLyNhanVien()
         {
@@ -25,7 +25,7 @@ namespace QuanLyXuatNhapKho
         }
         public void Process()
         {
-            var ds = _empDAL.CreateStore("sp_Employees_GetAll", null);
+            var ds = _helper.ExcuteStore("sp_Employees_GetAll", null);
             gDSNV.DataSource = ds.Tables[0];
             gvDSNV_Click(null, null);
         }
@@ -33,12 +33,12 @@ namespace QuanLyXuatNhapKho
         private void gvDSNV_Click(object sender, EventArgs e)
         {
             var row = gvDSNV.GetDataRow(gvDSNV.FocusedRowHandle);
-            if (row == null) return;
+            if (row == null) { Clear();  return; }
             txtMaNV.Text = row["EmpID"].ToString();
             txtHoTen.Text = row["FullName"].ToString();
             txtCMND.Text = row["IdentityCard"].ToString();
-            dateNgaySinh.DateTime = Convert.ToDateTime(row["BirthDay"]);
-            dateNgayLamViec.DateTime = Convert.ToDateTime(row["WorkDay"]);
+            dateNgaySinh.EditValue = row["BirthDay"];
+            dateNgayLamViec.EditValue = row["WorkDay"];
             txtDiaChi.Text = row["Address"].ToString();
             txtGhiChu.Text = row["Note"].ToString();
             txtEmail.Text = row["Email"].ToString();
@@ -73,21 +73,55 @@ namespace QuanLyXuatNhapKho
             dateNgayLamViec.EditValue = null;
             rdbNam.Checked = true;
             rdbNu.Checked = false;
-
+            pictureEdit1.Image = null;
             
         }
 
+        private bool CheckError()
+        {
+            if(txtHoTen.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập họ tên nhân viên!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                txtHoTen.Focus();
+                return false;
+            }
+            if (txtCMND.Text == "" || txtCMND.Text == "___ ___ ___" )
+            {
+                MessageBox.Show("Vui lòng nhập số chứng minh thư!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                txtCMND.SelectionStart = 0;
+                txtCMND.Focus();
+                return false;
+            }
+            if (txtSDT.Text == "" || txtSDT.Text == "____ ___ ___")
+            {
+                MessageBox.Show("Vui lòng nhập số điện thoại!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                txtSDT.SelectionStart = 0;
+                txtSDT.Focus();
+                return false;
+            }
+            if (dateNgaySinh.EditValue != null)
+            {
+                if (DateTime.Now.Year - dateNgaySinh.DateTime.Year < 15)
+                {
+                    MessageBox.Show("Nhân viên này chưa đủ tuổi làm việc!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    dateNgaySinh.Focus();
+                    return false;
+                }
+            }
+            return true;
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            var isSuccess = _empDAL.CreateStore("sp_Employees_Save", new
+            if (CheckError() == false) return;
+            var isSuccess = _helper.ExcuteStore("sp_Employees_Save", new
             {
                 EmpID = txtMaNV.Text,
                 IdentityCard = txtCMND.Text,
                 FullName = txtHoTen.Text,
-                BirthDay = dateNgaySinh.DateTime,
-                WorkDay = dateNgayLamViec.DateTime,
+                BirthDay = dateNgaySinh.EditValue, //== null dateNgaySinh.DateTime,
+                WorkDay = dateNgayLamViec.EditValue,
                 Email = txtEmail.Text,
-                Phone = txtSDT.Text,
+                Phone = txtSDT.Text.Replace("_",""),
                 Address = txtDiaChi.Text,
                 Note = txtGhiChu.Text,
                 Sex = rdbNam.Checked,
@@ -104,6 +138,7 @@ namespace QuanLyXuatNhapKho
                 MessageBox.Show("Lưu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Process();
             }
+            
 
         }
 
@@ -119,7 +154,7 @@ namespace QuanLyXuatNhapKho
             {
                 var row = gvDSNV.GetDataRow(gvDSNV.FocusedRowHandle);
                 if (row == null) return;
-                var isSuccess = _empDAL.CreateStore("sp_Employees_Delete", new
+                var isSuccess = _helper.ExcuteStore("sp_Employees_Delete", new
                 {
                     EmpID = row["EmpID"].ToString()
                 });
@@ -138,12 +173,17 @@ namespace QuanLyXuatNhapKho
 
         private void gvDSNV_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            gvDSNV_Click(null, null);
+            //DataTable tb = new DataTable();
+            //tb.Rows.Add("", "", "");
+            //tb.AcceptChanges();
         }
 
         private void textEdit7_TextChanged(object sender, EventArgs e)
         {
-            gvDSNV.ActiveFilterString = "[EmpID] like '%" + txtSearch.Text.Trim() + "%' OR [FullName] like '%" + txtSearch.Text.Trim() + "%' OR [Phone] like '%" + txtSearch.Text.Trim() + "%'";
+           gvDSNV.ActiveFilterString = "[EmpID] like '%" + txtSearch.Text.Trim() + "%' OR [FullName] like '%" + txtSearch.Text.Trim() + "%' OR [Phone] like '%" + txtSearch.Text.Trim() + "%'";
+            Task.Delay(500);
+            gvDSNV.FocusedRowHandle = 0;
+            gvDSNV_Click(null, null);
         }
 
         private void pictureEdit1_Click(object sender, EventArgs e)
@@ -183,5 +223,29 @@ namespace QuanLyXuatNhapKho
                 open.Dispose();
             }
         }
+
+        private void txtCMND_Click(object sender, EventArgs e)
+        {
+            if (txtCMND.Text == "___ ___ ___")
+            {
+                txtCMND.SelectionStart = 0;
+                txtCMND.Focus();
+            }
+        }
+
+        private void txtSDT_Click(object sender, EventArgs e)
+        {
+            if (txtSDT.Text == "____ ___ ___")
+            {
+                txtSDT.SelectionStart = 0;
+                txtSDT.Focus();
+            }
+        }
+
+        private void btnChangePicture_Click(object sender, EventArgs e)
+        {
+            pictureEdit1_Click(null, null);
+        }
+
     }
 }

@@ -16,6 +16,8 @@ namespace QuanLyXuatNhapKho
     {
         ucQuanLyNhanVien ucQLNV = new ucQuanLyNhanVien();
         ucQuanLyNguoiDung ucQLND = new ucQuanLyNguoiDung();
+        ucKhachHang ucQLKH = new ucKhachHang();
+        ucMatHang ucQLMH = new ucMatHang();
         public frmMain1()
         {
             InitializeComponent();
@@ -25,7 +27,7 @@ namespace QuanLyXuatNhapKho
         private void btnQLNV_ItemClick(object sender, ItemClickEventArgs e)
         {    
             ucQLNV.Process();
-            ucQLNV.Dock = DockStyle.Top;
+            ucQLNV.Dock = DockStyle.Fill;
             pnMain.Controls.Clear();
             pnMain.Controls.Add(ucQLNV);
         }
@@ -78,13 +80,59 @@ namespace QuanLyXuatNhapKho
         {
             using (frmDoiMatKhau frm = new frmDoiMatKhau())
             {
-                frm._userDAL = ucQLND._userDAL;
+                //frm._userDAL = ucQLND._userDAL;
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     
                 }
             }
             
+        }
+
+        private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            
+            pnMain.Controls.Clear();
+            ucQLKH.Process();
+            ucQLKH.Dock = DockStyle.Fill;
+            
+            pnMain.Controls.Add(ucQLKH);
+        }
+
+        private void barButtonItem2_ItemClick(object sender, ItemClickEventArgs e)
+        { 
+            pnMain.Controls.Clear();
+            ucQLMH.Process();
+            ucQLMH.Dock = DockStyle.Fill;
+           
+            pnMain.Controls.Add(ucQLMH);
+        }
+
+        private void frmMain1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có muốn thoát khỏi chương trình?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if (result == DialogResult.OK)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void btnSaoLuu_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            using (frmBackupDatabase frm = new frmBackupDatabase())
+            {
+                frm.Process();
+                frm.ShowDialog();
+            }
+        }
+
+        private void btnPhucHoi_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            using (frmRestoreDatabase frm = new frmRestoreDatabase())
+            {
+                frm.Process();
+                frm.ShowDialog();
+            }
         }
 
     }

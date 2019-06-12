@@ -9,34 +9,33 @@ using QuanLyXuatNhapKho.DTO;
 using QuanLyXuatNhapKho.DAL;
 using System;
 using System.IO;
-
+using System.Collections.Generic;
 namespace QuanLyXuatNhapKho
 {
     public partial class ucKhachHang : DevExpress.XtraEditors.XtraUserControl
     {
-        string appPath = Path.GetDirectoryName(Application.ExecutablePath) + @"\Images\"; 
-        CustomerDAL _CustomerDAL = new CustomerDAL();
+
+        string appPath = Path.GetDirectoryName(Application.ExecutablePath) + @"\Images\";
+        DataHelper _helper = new DataHelper();
         public ucKhachHang()
         {
             InitializeComponent();
         }
         public void Process()
         {
-            btnSua.Enabled = true;
-            btnSave.Enabled = false;
-            btnAdd.Enabled = true;
-            btnXoa.Enabled = true;
-            var ds = _CustomerDAL.CreateStore("sp_Customer_GetAll", null);
+            Dictionary<string, object> query = new Dictionary<string, object>();
+            query.Add("sp_Customer_GetAll", null);
+            query.Add("sp_CustomerType_GetAll", null);
+            var ds = _helper.ExcuteStore(query);
+            if(ds == null)
+            {
+                MessageBox.Show("Có lỗi hệ thống, vui lòng liên hệ người quản trị.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             gDSKhachHang.DataSource = ds.Tables[0];
-            txtMaKH.Enabled = false;
-            txtHoTen.Enabled = false;
-            txtCMND.Enabled = false;
-            txtDiaChi.Enabled = false;
-            txtEmail.Enabled = false;
-            txtSDT.Enabled = false;
-            txtKhachHang.Enabled = false;
-
-
+            lkLoaiKhachHang.Properties.DataSource = ds.Tables[1];
+            if (gDSKhachHang.DataSource == null) lkLoaiKhachHang.ItemIndex = 0;
+            gvDSKH_Click(null, null);
         }
         public void Clear()
         {
@@ -46,69 +45,27 @@ namespace QuanLyXuatNhapKho
             txtDiaChi.Text = "";
             txtSDT.Text = "";
             txtEmail.Text = "";
-            txtKhachHang.Text = "";
+            pictureEdit1.Image = null;
+            lkLoaiKhachHang.ItemIndex = 0;
            
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            btnSua.Enabled = false;
-            btnSave.Enabled = true;
-            btnAdd.Enabled = false;
-            btnXoa.Enabled = false;
-            txtMaKH.Enabled = true;
-            txtHoTen.Enabled = true;
-            txtCMND.Enabled = true;
-            txtDiaChi.Enabled = true;
-            txtEmail.Enabled = true;
-            txtSDT.Enabled = true;
-            txtKhachHang.Enabled = true;
             Clear();
-
-
         }
 
-        private void btnSua_Click(object sender, EventArgs e)
-        {
-            btnSua.Enabled = false;
-            btnSave.Enabled = true;
-            btnAdd.Enabled = false;
-            btnXoa.Enabled = false;
-            txtMaKH.Enabled = false;
-            txtHoTen.Enabled = true;
-            txtCMND.Enabled = true;
-            txtDiaChi.Enabled = true;
-            txtEmail.Enabled = true;
-            txtSDT.Enabled = true;
-            txtKhachHang.Enabled = true;
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void gvDSKH_Click(object sender, EventArgs e)
         {
             var row = gvDSKH.GetDataRow(gvDSKH.FocusedRowHandle);
-            if (row == null) return;
-            txtMaKH.Text = row["CustomeriD"].ToString();
-            txtMaKH.Enabled = false;
-            txtHoTen.Enabled = false;
-            txtCMND.Enabled = false;
-            txtDiaChi.Enabled = false;
-            txtEmail.Enabled = false;
-            txtSDT.Enabled = false;
-            txtKhachHang.Enabled = false;
-            btnSua.Enabled = true;
-            btnSave.Enabled = false;
+            if (row == null) { Clear(); return; }
+            txtMaKH.Text = row["CustomerID"].ToString();       
             txtHoTen.Text = row["FullName"].ToString();
-            txtCMND.Text = row["IdentityCard"].ToString();
-            
-            txtDiaChi.Text = row["Address"].ToString();
-           
+            txtCMND.Text = row["IdentityCard"].ToString();          
+            txtDiaChi.Text = row["Address"].ToString();          
             txtEmail.Text = row["Email"].ToString();
             txtSDT.Text = row["Phone"].ToString();
-            txtKhachHang.Text = row["CustomerTypeID"].ToString();
+            lkLoaiKhachHang.EditValue = row["CustomerTypeID"].ToString();
             if (File.Exists(appPath + row["Image"].ToString()))
             {
                 pictureEdit1.Image = Image.FromFile(appPath + row["Image"].ToString());
@@ -125,18 +82,42 @@ namespace QuanLyXuatNhapKho
             gvDSKH_Click(null, null);
         }
 
+        private bool CheckErorr()
+        {
+            if (txtHoTen.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập họ tên khách hàng!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                txtHoTen.Focus();
+                return false;
+            }
+            if (txtCMND.Text == "" || txtCMND.Text == "___ ___ ___")
+            {
+                MessageBox.Show("Vui lòng nhập số chứng minh thư!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                txtCMND.SelectionStart = 0;
+                txtCMND.Focus();
+                return false;
+            }
+            if (txtSDT.Text == "" || txtSDT.Text == "____ ___ ___")
+            {
+                MessageBox.Show("Vui lòng nhập số điện thoại!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                txtSDT.SelectionStart = 0;
+                txtSDT.Focus();
+                return false;
+            }
+            return true;
+        }
         private void btnSave_Click_1(object sender, EventArgs e)
         {
-            var ds = _CustomerDAL.CreateStore("sp_Cusstomer_Save", new
+            if (CheckErorr() == false) return;
+            var ds = _helper.ExcuteStore("sp_Customer_Save", new
             {
                 CustomerID = txtMaKH.Text,
                 IdentityCard = txtCMND.Text,
                 FullName = txtHoTen.Text,
-               
                 Email = txtEmail.Text,
                 Phone = txtSDT.Text,
                 Address = txtDiaChi.Text,
-               CustomerTypeID=txtKhachHang.Text,
+                CustomerTypeID= lkLoaiKhachHang.EditValue,
                 Image = pictureEdit1.Name,
               
             });
@@ -155,11 +136,6 @@ namespace QuanLyXuatNhapKho
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             gvDSKH.ActiveFilterString = "[CustomerID] like '%" + txtSearch.Text.Trim() + "%' OR [FullName] like '%" + txtSearch.Text.Trim() + "%' OR [Phone] like '%" + txtSearch.Text.Trim() + "%'";
-        }
-
-        private void pictureEdit1_EditValueChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void pictureEdit1_Click(object sender, EventArgs e)
@@ -202,11 +178,9 @@ namespace QuanLyXuatNhapKho
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-              var ds = _CustomerDAL.CreateStore("sp_Customer_Delete", new
+            var ds = _helper.ExcuteStore("sp_Customer_Delete", new
             {
-                CustomerID = txtMaKH.Text,
-               
-              
+                CustomerID = txtMaKH.Text,       
             });
             if (ds == null)
             {
@@ -217,6 +191,48 @@ namespace QuanLyXuatNhapKho
             {
                 MessageBox.Show("Xóa thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Process();
+            }
+        }
+
+        private void repositoryItemButtonEdit2_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có muốn xóa khách hàng này không?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.No) return;
+            var ds = _helper.ExcuteStore("sp_Customer_Delete", new
+            {
+                CustomerID = txtMaKH.Text,
+            });
+            if (ds == null)
+            {
+                MessageBox.Show("Có lỗi hệ thống, không xóa được.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                MessageBox.Show("Xóa thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Process();
+            }
+        }
+
+        private void btnChangePicture_Click(object sender, EventArgs e)
+        {
+            pictureEdit1_Click(null, null);
+        }
+
+        private void txtCMND_Click(object sender, EventArgs e)
+        {
+            if (txtCMND.Text == "___ ___ ___")
+            {
+                txtCMND.SelectionStart = 0;
+                txtCMND.Focus();
+            }
+        }
+        private void txtSDT_Click(object sender, EventArgs e)
+        {
+            if (txtSDT.Text == "____ ___ ___")
+            {
+                txtSDT.SelectionStart = 0;
+                txtSDT.Focus();
             }
         }
 

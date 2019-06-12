@@ -22,134 +22,105 @@ namespace QuanLyXuatNhapKho
         }
         public  void Process()
         {
-
-            var   ds = _ItemsDAL.CreateStore("sp_Items_GetAll", null );
-            var ds1 = _ItemsDAL.CreateStore("sp_Unit_GetAll", null);
-            var ds2 = _ItemsDAL.CreateStore("sp_ItemType_GetAll", null);
+            Dictionary<string, object> query = new Dictionary<string, object>();
+            query.Add("sp_Items_GetAll", null);
+            query.Add("sp_Unit_GetAll", null);
+            query.Add("sp_ItemType_GetAll", null);
+            query.Add("sp_Countries_GetAll", null);
+            var ds = _ItemsDAL.ExcuteStore(query);
 
             gDSMatHang.DataSource = ds.Tables[0];
-            searchDonViTinh.Properties.DataSource = ds1.Tables[0];
-            searchLoaiHang.Properties.DataSource = ds2.Tables[0];
-            btnSua.Enabled = true;
-            btnSave.Enabled = false;
-            btnAdd.Enabled = true;
-            btnXoa.Enabled = true;
-
-            txtMaMatHang.Enabled = false;
-            txtTenMatHang.Enabled = false;
-            txtGiaBan.Enabled = false;
-            searchLoaiHang .Enabled = false;
-            searchDonViTinh.Enabled = false;
-            dateEditNgaySanXuat.Enabled = false;
-            dateEditNgayHetHang.Enabled = false;
+            lkDonViTinh.Properties.DataSource = ds.Tables[1];
+            lkLoaiHang.Properties.DataSource = ds.Tables[2];
+            searchlkQuocGia.Properties.DataSource = ds.Tables[3];
             gvDSMH.FocusedRowHandle = 0;
             gvDSMH_Click(null, null);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Clear();
-            btnSua.Enabled = false;
-            btnSave.Enabled = true;
-            btnAdd.Enabled = false;
-            btnXoa.Enabled = false;
-
-            txtMaMatHang     .Enabled =           false;
-            txtTenMatHang    .Enabled =          true;
-            txtGiaBan       .Enabled =             true;
-            searchLoaiHang     .Enabled =            true;
-            searchDonViTinh  .Enabled =       true;
-            dateEditNgaySanXuat.Enabled =   true;
-            dateEditNgayHetHang.Enabled = false;
-            
+            Clear();          
         }
         public void Clear()
         {
             txtMaMatHang.Text = "";
             txtTenMatHang.Text = "";
             txtGiaBan.Text = "";
-            searchLoaiHang.Text = "";
-            searchDonViTinh.Text = "";
-            dateEditNgaySanXuat.Text = "";
-            dateEditNgayHetHang.Text = "";
+            txtSoLuongTon.Text = "";
+            lkLoaiHang.ItemIndex = 0;
+            lkDonViTinh.ItemIndex = 0;
+            searchlkQuocGia.EditValue = 0;
+            dateEditNgaySanXuat.EditValue = null;
+            dateEditNgayHetHan.EditValue = null;
         }
-        private void btnSua_Click(object sender, EventArgs e)
+
+        public bool CheckError()
         {
-            btnSua.Enabled = false;
-            btnSave.Enabled = true;
-            btnAdd.Enabled = false;
-            btnXoa.Enabled = false;
-            txtMaMatHang.Enabled = false;
-            txtTenMatHang.Enabled = true;
-            txtGiaBan.Enabled = true;
-            searchDonViTinh.Enabled = true;
-            searchLoaiHang.Enabled = true;
-            dateEditNgaySanXuat.Enabled = true;
-            dateEditNgayHetHang.Enabled = false;
-        }
-
-        private void btnXoa_Click(object sender, EventArgs e)
-        {
-            var ds = _ItemsDAL.CreateStore("sp_Customer_Delete", new
+            if (txtTenMatHang.Text == "")
             {
-                ItemID = txtMaMatHang.Text,
-
-
-            });
-            if (ds == null)
-            {
-                MessageBox.Show("Có lỗi hệ thống, không xóa được.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                MessageBox.Show("Vui lòng nhập tên mặt hàng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtTenMatHang.Focus();
+                return false;
             }
-            else
+            if (lkLoaiHang.EditValue == "")
             {
-                MessageBox.Show("Xóa thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Process();
+                MessageBox.Show("Vui lòng chọn loại hàng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                lkLoaiHang.Focus();
+                return false;
             }
+            if (txtGiaBan.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập giá bán!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtGiaBan.Focus();
+                return false;
+            }
+            if (Convert.ToInt64(txtGiaBan.EditValue) < 0)
+            {
+                MessageBox.Show("Giá bán không hợp lệ, vui lòng xem lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtGiaBan.Focus();
+                return false;
+            }
+            if (lkDonViTinh.EditValue == null)
+            {
+                MessageBox.Show("Vui lòng chọn đơn vị tính!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                lkDonViTinh.Focus();
+                return false;
+            }
+            if (dateEditNgaySanXuat.EditValue == null)
+            {
+                MessageBox.Show("Vui lòng nhập ngày sản xuất!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dateEditNgaySanXuat.Focus();
+                return false;
+            }
+            if (dateEditNgayHetHan.EditValue == null)
+            {
+                MessageBox.Show("Vui lòng nhập ngày hết hạn!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dateEditNgaySanXuat.Focus();
+                return false;
+            }
+            if (dateEditNgayHetHan.DateTime < dateEditNgaySanXuat.DateTime)
+            {
+                MessageBox.Show("Ngày hết hạn hoặc ngày sản xuất không đúng, vui lòng xem lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dateEditNgayHetHan.Focus();
+                return false ;
+            }
+            return true;
         }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if(txtTenMatHang.Text=="")
+            if (CheckError() == false) return;
+            var ds = _ItemsDAL.ExcuteStore("sp_Items_Save", new
             {
-                MessageBox.Show("Tên mặt hàng không thể rỗng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtTenMatHang.Focus();
-                return;
-            }
-            
-            if(searchLoaiHang.EditValue=="")
-            {
-                MessageBox.Show("Chưa nhập loại hàng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                searchLoaiHang.Focus();
-                return;
-            }
-            if (searchDonViTinh.EditValue == "")
-            {
-                MessageBox.Show("Chưa nhập đơn vị tính", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                searchDonViTinh.Focus();
-                return;
-            }
-            if(dateEditNgaySanXuat.EditValue=="")
-            {
-                MessageBox.Show("Chưa nhập ngày sản xuất", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                dateEditNgaySanXuat.Focus();
-                return;
-            }
-            if (dateEditNgayHetHang.DateTime < dateEditNgaySanXuat.DateTime)
-            {
-                MessageBox.Show("Ngày hết hạng phải lớn hơn ngày sản xuất", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                dateEditNgayHetHang.Focus();
-                return;
-            }
-            var ds = _ItemsDAL.CreateStore("sp_Items_Save", new
-            {
-                ItemID        =txtMaMatHang.Text,                      
-                ItemName=txtTenMatHang.Text,
-                ItemTypeID=searchLoaiHang.EditValue,
-                UnitID=searchDonViTinh.EditValue,
-                ManufactureDate =dateEditNgaySanXuat.DateTime,
-                ExpirationDate=dateEditNgayHetHang.DateTime,
-                QtyExists=txtGiaBan.Text
+                ItemID = txtMaMatHang.Text,                      
+                ItemName = txtTenMatHang.Text,
+                ItemTypeID = lkLoaiHang.EditValue,
+                UnitID = lkDonViTinh.EditValue,
+                ManufactureDate = dateEditNgaySanXuat.EditValue,
+                ExpirationDate = dateEditNgayHetHan.EditValue,
+                ItemPrice = txtGiaBan.Text,
+                QtyExists = Convert.ToInt64(txtSoLuongTon.Text),
+                CountryID = searchlkQuocGia.EditValue,
+                UserID = Program.CurrentUser.ID
 
             });
             if (ds == null)
@@ -168,26 +139,16 @@ namespace QuanLyXuatNhapKho
         private void gvDSMH_Click(object sender, EventArgs e)
         {
             var row = gvDSMH.GetDataRow(gvDSMH.FocusedRowHandle);
-            if (row == null) return;
-
-            btnAdd.Enabled = true;
-            btnXoa.Enabled = true;
-            btnSua.Enabled = true;
-            btnSave.Enabled = false;
+            if (row == null) { Clear(); return; }
             txtMaMatHang.Text = row["ItemID"].ToString();
             txtTenMatHang.Text = row["ItemName"].ToString();
-            txtGiaBan.Text = row["QtyExists"].ToString();
-            searchLoaiHang.EditValue = row["ItemTypeID"].ToString();
-            searchDonViTinh.EditValue = row["UnitID"].ToString();
+            txtGiaBan.Text = row["ItemPrice"].ToString();
+            txtSoLuongTon.Text = row["QtyExists"].ToString();
+            lkLoaiHang.EditValue = row["ItemTypeID"].ToString();
+            lkDonViTinh.EditValue = row["UnitID"].ToString();
+            searchlkQuocGia.EditValue = row["CountryID"].ToString();
             dateEditNgaySanXuat.DateTime = Convert.ToDateTime( row["ManufactureDate"]);
-            dateEditNgayHetHang.DateTime = Convert.ToDateTime(row["ExpirationDate"]);
-            txtMaMatHang.Enabled = false;
-            txtTenMatHang.Enabled = false;
-            txtGiaBan.Enabled = false;
-            searchLoaiHang.Enabled = false;
-            searchDonViTinh.Enabled = false;
-            dateEditNgaySanXuat.Enabled = false;
-            dateEditNgayHetHang.Enabled = false;
+            dateEditNgayHetHan.DateTime = Convert.ToDateTime(row["ExpirationDate"]);
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -203,17 +164,46 @@ namespace QuanLyXuatNhapKho
 
         private void dateEditNgayHetHang_EditValueChanged(object sender, EventArgs e)
         {
-            if(dateEditNgayHetHang.DateTime<dateEditNgaySanXuat.DateTime)
-            {
-                MessageBox.Show("Ngày hết hạng phải lớn hơn ngày sản xuất", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //if(dateEditNgayHetHan.DateTime<dateEditNgaySanXuat.DateTime)
+            //{
+            //    MessageBox.Show("Ngày hết hạng phải lớn hơn ngày sản xuất", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 
-                return;
-            }
+            //    return;
+            //}
         }
 
         private void dateEditNgaySanXuat_EditValueChanged(object sender, EventArgs e)
         {
-            dateEditNgayHetHang.Enabled = true;
+            dateEditNgayHetHan.Enabled = true;
+        }
+
+        private void repositoryItemButtonEdit2_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+             DialogResult result = MessageBox.Show("Bạn có muốn xóa mặt hàng này không?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+             if (result == DialogResult.Yes)
+             {
+                 var ds = _ItemsDAL.ExcuteStore("sp_Items_Delete", new
+                 {
+                     ItemID = txtMaMatHang.Text,
+                 });
+                 if (ds == null)
+                 {
+                     MessageBox.Show("Có lỗi hệ thống, không xóa được.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                     return;
+                 }
+                 else
+                 {
+                     MessageBox.Show("Xóa thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                     Process();
+                 }
+             }
+
+            
+        }
+
+        private void gDSMatHang_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
